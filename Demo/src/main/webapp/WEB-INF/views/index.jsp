@@ -55,15 +55,18 @@ var map = new naver.maps.Map('map', {
 var markers = [];
 var infoWindows =[];
 var list = [];
-function receiveArray() {
+function receiveArray(pageNO) {
     $.ajax({
-        url: "/api/getData",
-        type: "post",
+        url: "/api/getData/" + pageNO ,
+        type: "GET",
         success: function(data) { showData(data); console.log(data)},
         error: function(e) {alert("통신실패"); console.log(e);}
     });
 }  
-receiveArray();
+for(var pageNO = 0; pageNO < 5; pageNO++){
+  receiveArray(pageNO);
+
+}
 var markers = [];
 var infoWindows =[];
 function showData(list){

@@ -26,4 +26,7 @@ public class Information {
 	
 	@ManyToOne
 	private User user;
+	
+	@ManyToOne
+	private Area area;
 }

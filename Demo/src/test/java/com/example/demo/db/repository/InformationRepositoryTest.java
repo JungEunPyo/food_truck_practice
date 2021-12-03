@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.demo.db.entity.Information;
 
-@SpringBootTest
+//@SpringBootTest
 class InformationRepositoryTest {
 
 	@Autowired
@@ -32,7 +32,7 @@ class InformationRepositoryTest {
 		
 	}
 	
-	@Test
+	//@Test
 	public void update() {
 		infoRepository.findById(4L).ifPresent(i->{
 			i.setTitle("바뀐 제목");

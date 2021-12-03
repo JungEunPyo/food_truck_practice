@@ -10,12 +10,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.demo.db.entity.User;
 
-@SpringBootTest
+//@SpringBootTest
 class UserRepositoryTest{
 
 	@Autowired
 	private UserRepository userRepository;
-	//@Test
+	@Test
 	public void create() {
 		User user = User.builder()
 				.userName("root")
