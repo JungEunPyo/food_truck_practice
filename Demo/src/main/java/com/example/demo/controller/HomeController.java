@@ -28,9 +28,9 @@ public class HomeController {
 		return "process";
 	}
 	
-//	@GetMapping(value="/area")
-//	public String area() {
-//		return "area";
-//	}
-//    
+	@GetMapping(value="/area")
+	public String area() {
+		return "area";
+	}
+    
 }
