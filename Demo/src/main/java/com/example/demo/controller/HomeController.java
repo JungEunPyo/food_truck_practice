@@ -32,5 +32,11 @@ public class HomeController {
 	public String area() {
 		return "area";
 	}
+	
+	@GetMapping(value="/map")
+	public String map() {
+	    return "map";
+	}
+
     
 }
