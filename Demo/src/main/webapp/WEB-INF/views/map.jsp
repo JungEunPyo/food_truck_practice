@@ -106,18 +106,15 @@ var map = new naver.maps.Map('map', {
 var markers = [];
 var infoWindows =[];
 var list = [];
-function receiveArray(pageNO) {
+function receiveArray() {
     $.ajax({
-        url: "/api/getData/" + pageNO ,
+        url: "/api/getDataByDB/" ,
         type: "GET",
         success: function(data) { showData(data); console.log(data)},
         error: function(e) {alert("통신실패"); console.log(e);}
     });
 }  
-for(var pageNO = 0; pageNO < 5; pageNO++){
-  receiveArray(pageNO);
-
-}
+receiveArray();
 var markers = [];
 var infoWindows =[];
 function showData(list){
