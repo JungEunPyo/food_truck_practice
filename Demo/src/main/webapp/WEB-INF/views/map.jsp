@@ -105,10 +105,10 @@ var map = new naver.maps.Map('map', {
 
 var markers = [];
 var infoWindows =[];
-var list = [];
+
 function receiveArray() {
     $.ajax({
-        url: "/api/getDataByDB/" ,
+        url: "/api//getDataByDB" ,
         type: "GET",
         success: function(data) { showData(data); console.log(data)},
         error: function(e) {alert("통신실패"); console.log(e);}
@@ -124,8 +124,8 @@ function receiveArrayNoDb(){
     });
   }
 }
-//receiveArray();
-receiveArrayNoDb();
+receiveArray();
+//receiveArrayNoDb();
 var markers = [];
 var infoWindows =[];
 function showData(list){
