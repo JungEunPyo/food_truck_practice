@@ -68,9 +68,96 @@
      <div class="container" style="text-align: right; padding: 30px 0px 0px 0px; color: lightgrey;">
       <p>Spielbudenplatz FoodTruckFestival by Speibudenplatz</p>
      </div>
-      
-      
-      
+
+<script>
+
+var map = new naver.maps.Map('map', {
+    center: new naver.maps.LatLng(37.3595704, 127.105399),
+    zoom: 10
+});
+
+var markers = [];
+var infoWindows =[];
+var list = [];
+// function receiveArray(pageNO) {
+//     $.ajax({
+//         url: "/api/getData/" + pageNO ,
+//         type: "GET",
+//         success: function(data) { showData(data); console.log(data)},
+//         error: function(e) {alert("통신실패"); console.log(e);}
+//     });
+// }  
+// for(var pageNO = 0; pageNO < 5; pageNO++){
+//   receiveArray(pageNO);
+
+// }
+function receiveArray() {
+    $.ajax({
+        url: "/api/getDataByDB/" ,
+        type: "GET",
+        success: function(data) { showData(data); console.log(data)},
+        error: function(e) {alert("통신실패"); console.log(e);}
+    });
+}  
+receiveArray();
+var markers = [];
+var infoWindows =[];
+function showData(list){
+  
+  for(var i = 0; i < list.length; i++){
+   // if(list[i].latitude == 0)continue
+    var marker = new naver.maps.Marker({
+        map: map,
+        title: list[i].prmisnZoneNm,
+        position: new naver.maps.LatLng(list[i].latitude, list[i].longitude)
+    });
+   
+    var infoWindow = new naver.maps.InfoWindow({
+        content: '<div style="width:150px;text-align:center;padding:10px;"> <b>"'+  list[i].prmisnZoneNm +'"</b>.</div>'
+    })
+    markers.push(marker);
+    infoWindows.push(infoWindow);
+}
+for (var i = 0; i < markers.length; i++) {
+    showMarker(map, markers[i]);
+    naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i));
+}
+naver.maps.Event.addListener(marker, "click", function(e){
+  if(infoWindow.getMap()){
+    infoWindow.close();
+  }else{
+    infoWindow
+  }
+})
+}
+
+
+
+function getClickHandler(seq){
+  return function(e){
+    var marker = markers[seq], infoWindow = infoWindows[seq];
+    if(infoWindow.getMap()){
+      infoWindow.close();
+    }else{
+      infoWindow.open(map, marker);
+    }
+  }
+}
+function showMarker(map, marker) {
+
+if (marker.setMap()) return;
+marker.setMap(map);
+}
+
+function hideMarker(map, marker) {
+
+if (!marker.setMap()) return;
+marker.setMap(null);
+}
+
+
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
