@@ -7,123 +7,70 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-    <title>간단한 지도 표시하기</title>
+    <title>푸드트럭 나들목</title>
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=k6uwn1n1eo"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="images/foodtruck_logo2.png" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./css/custom.css">
 </head>
-<body>
+<body style="background-image: url('images/background.png'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed;">
     <nav class="navbar navbar-dark bg-dark" >
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">푸드트럭 나들목</a>
+          <a class="navbar-brand" href="index"><span style="font-weight: bold;">푸드트럭 나들목</span></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-              <a class="nav-link active" aria-current="page" href="index">홈</a>
-              <a class="nav-link" href="./process">푸드트럭창업과정</a>
+              <a class="nav-link" href="./process">푸드트럭 창업절차</a>
+              <a class="nav-link" href="./map">푸드트럭 허가구역</a>
               <a class="nav-link" href="./area">상권분석</a>
             </div>
           </div>
         </div>
       </nav>
-      <div id="map" style="width:100%;height:800px;"></div>
-     <div>
-        <!-- <table>
-       <c:forEach var="loca" items="${locations}">
-            <tr>
-                <td>${loca.prmisnZoneNm}</td>
-                <td>${loca.lnmadr}</td>
-                <td>${loca.rdnmadr}</td>
-                <td>${loca.latitude}</td>
-                <td>${loca.longitude}</td>
-            </tr>
-       </c:forEach>
-    </table> -->
+      
+      <div class="container" style="text-align: center;">
+      <div class="row">
+       <div class="col">
+        <div id="logo">
+         <img src="images/foodtruck_logo2.png" width="17%" vspace="40px" alt="푸드트럭 나들목 로고">
+        </div>
+       </div>
+      </div>
      </div>
-<script>
-
-var map = new naver.maps.Map('map', {
-    center: new naver.maps.LatLng(37.3595704, 127.105399),
-    zoom: 10
-});
-
-var markers = [];
-var infoWindows =[];
-var list = [];
-function receiveArray(pageNO) {
-    $.ajax({
-        url: "/api/getData/" + pageNO ,
-        type: "GET",
-        success: function(data) { showData(data); console.log(data)},
-        error: function(e) {alert("통신실패"); console.log(e);}
-    });
-}  
-for(var pageNO = 0; pageNO < 5; pageNO++){
-  receiveArray(pageNO);
-
-}
-var markers = [];
-var infoWindows =[];
-function showData(list){
-  
-  for(var i = 0; i < list.length; i++){
-   // if(list[i].latitude == 0)continue
-    var marker = new naver.maps.Marker({
-        map: map,
-        title: list[i].prmisnZoneNm,
-        position: new naver.maps.LatLng(list[i].latitude, list[i].longitude)
-    });
-   
-    var infoWindow = new naver.maps.InfoWindow({
-        content: '<div style="width:150px;text-align:center;padding:10px;"> <b>"'+  list[i].prmisnZoneNm +'"</b>.</div>'
-    })
-    markers.push(marker);
-    infoWindows.push(infoWindow);
-}
-for (var i = 0; i < markers.length; i++) {
-    showMarker(map, markers[i]);
-    naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i));
-}
-naver.maps.Event.addListener(marker, "click", function(e){
-  if(infoWindow.getMap()){
-    infoWindow.close();
-  }else{
-    infoWindow
-  }
-})
-}
+     
+     <div class="container" style="text-align: center;">
+      <div class="row">
+       <div class="col">
+        <span style="font-weight: bold; font-size: 30px;"><p>푸드트럭 창업에 대한 모든 것<br>
+        <span style="font-weight: bold; color: #f6ac2c; font-size: 40px;">푸드트럭 나들목<br></span><br></p></span>
+       </div>
+      </div>
+     </div>
+     
+     <div class="container" style="text-align: center;">
+      <div class="row">
+       <div class="col-sm-6 col-md-4">
+        <div><a href="process"><img src="images/process_img.png" width="80%" alt="푸드트럭 창업절차 링크"></a></div>
+       </div>
+       <div class="col-sm-6 col-md-4">
+        <div><a href="map"><img src="images/map_img.png" width="80%" alt="푸드트럭 허가구역 링크"></a></div>
+       </div>
+       <div class="col-sm-6 col-md-4">
+        <div><a href="#"><img src="images/community.png" width="80%" alt="게시판 링크"></a></div>
+       </div>
+      </div>
+     </div>
+     
+     <div class="container" style="text-align: right; padding: 30px 0px 0px 0px; color: lightgrey;">
+      <p>Spielbudenplatz FoodTruckFestival by Speibudenplatz</p>
+     </div>
 
 
 
-function getClickHandler(seq){
-  return function(e){
-    var marker = markers[seq], infoWindow = infoWindows[seq];
-    if(infoWindow.getMap()){
-      infoWindow.close();
-    }else{
-      infoWindow.open(map, marker);
-    }
-  }
-}
-function showMarker(map, marker) {
-
-if (marker.setMap()) return;
-marker.setMap(map);
-}
-
-function hideMarker(map, marker) {
-
-if (!marker.setMap()) return;
-marker.setMap(null);
-}
-
-
-</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
