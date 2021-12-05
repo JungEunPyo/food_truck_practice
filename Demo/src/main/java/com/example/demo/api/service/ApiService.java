@@ -3,9 +3,7 @@ package com.example.demo.api.service;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -30,9 +28,14 @@ public class ApiService {
 	private String encodingKey;
 	@Value("${data.decodingKey}")
 	private String decodingKey;
-	
+
 	public List<Area> searchByData(){
-		return areaRepository.findAll();
+		List<Area> list = new ArrayList<>();
+		Iterable<Area> iterable =  areaRepository.findAll();
+		for(Area a: iterable){
+			list.add(a);
+		}
+		return list;
 	}
 	public List<FoodTruckInfo> searchByNumber(int pageNo) throws IOException{
 		StringBuilder urlBuilder = new StringBuilder("http://api.data.go.kr/openapi/tn_pubr_public_food_truck_permit_area_api"); /*URL*/
