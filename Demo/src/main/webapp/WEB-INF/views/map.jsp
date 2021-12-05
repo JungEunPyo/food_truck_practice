@@ -123,10 +123,10 @@ var map = new naver.maps.Map('map', {
 
 var markers = [];
 var infoWindows =[];
-
+//receiveArray();
 function receiveArray() {
     $.ajax({
-        url: "/api//getDataByDB" ,
+        url: "/api/getDataByDB" ,
         type: "GET",
         success: function(data) { showData(data); console.log(data)},
         error: function(e) {alert("통신실패"); console.log(e);}
@@ -142,8 +142,8 @@ function receiveArrayNoDb(){
     });
   }
 }
-receiveArray();
 //receiveArrayNoDb();
+receiveArray();
 var markers = [];
 var infoWindows =[];
 function showData(list){
@@ -162,17 +162,55 @@ function showData(list){
     markers.push(marker);
     infoWindows.push(infoWindow);
 }
-for (var i = 0; i < markers.length; i++) {
-    showMarker(map, markers[i]);
-    naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i));
+naver.maps.Event.addListener(map, 'idle', function() {
+    updateMarkers(map, markers);
+});
+for (var i=0, ii=markers.length; i<ii; i++) {
+naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i));
 }
-naver.maps.Event.addListener(marker, "click", function(e){
-  if(infoWindow.getMap()){
-    infoWindow.close();
-  }else{
-    infoWindow
-  }
-})
+}
+function updateMarkers(map, markers) {
+
+var mapBounds = map.getBounds();
+var marker, position;
+
+for (var i = 0; i < markers.length; i++) {
+
+    marker = markers[i]
+    position = marker.getPosition();
+
+    if (mapBounds.hasLatLng(position)) {
+        showMarker(map, marker);
+    } else {
+        hideMarker(map, marker);
+    }
+}
+}
+
+function showMarker(map, marker) {
+
+if (marker.setMap()) return;
+marker.setMap(map);
+}
+
+function hideMarker(map, marker) {
+
+if (!marker.setMap()) return;
+marker.setMap(null);
+}
+
+// 해당 마커의 인덱스를 seq라는 클로저 변수로 저장하는 이벤트 핸들러를 반환합니다.
+function getClickHandler(seq) {
+return function(e) {
+    var marker = markers[seq],
+        infoWindow = infoWindows[seq];
+
+    if (infoWindow.getMap()) {
+        infoWindow.close();
+    } else {
+        infoWindow.open(map, marker);
+    }
+}
 }
 
 
