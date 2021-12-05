@@ -38,5 +38,28 @@ public class HomeController {
 	    return "map";
 	}
 
-    
+	@GetMapping(value="/boardlist")
+	public String boardlist() {
+	    return "boardlist";
+	}
+
+	@GetMapping(value="/boardview")
+	public String boardview() {
+	    return "boardview";
+	}
+	
+	@GetMapping(value="/boardinsert")
+	public String boardinsert() {
+	    return "boardinsert";
+	}
+	@GetMapping(value="/login")
+	public String login() {
+	    return "loginpage";
+	}
+	
+	@GetMapping(value="/join")
+	public String join() {
+	    return "join";
+	}
+	
 }

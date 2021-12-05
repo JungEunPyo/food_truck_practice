@@ -22,12 +22,30 @@
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
+         
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          	<a class="nav-link" href="./join">회원가입</a>
+            <a class="nav-link" href="./login">로그인</a>
+          </div>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
               <a class="nav-link" href="./process">푸드트럭 창업절차</a>
               <a class="nav-link" href="./map">푸드트럭 허가구역</a>
               <a class="nav-link" href="./area">상권분석</a>
+              <a class="nav-link" href="./boardlist">게시판</a>
             </div>
+           <%-- 
+           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <a class="nav-link" href="./logot">로그아웃</a>
+          </div>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link" href="./process">푸드트럭 창업절차</a>
+              <a class="nav-link" href="./map">푸드트럭 허가구역</a>
+              <a class="nav-link" href="./area">상권분석</a>
+              <a class="nav-link" href="./boardlist">게시판</a>
+            </div>
+            --%> 
           </div>
         </div>
       </nav>
@@ -60,7 +78,7 @@
         <div><a href="map"><img src="images/map_img.png" width="80%" alt="푸드트럭 허가구역 링크"></a></div>
        </div>
        <div class="col-sm-6 col-md-4">
-        <div><a href="#"><img src="images/community.png" width="80%" alt="게시판 링크"></a></div>
+        <div><a href="boardlist"><img src="images/community.png" width="80%" alt="게시판 링크"></a></div>
        </div>
       </div>
      </div>
