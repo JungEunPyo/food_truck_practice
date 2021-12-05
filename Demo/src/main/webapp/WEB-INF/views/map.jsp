@@ -58,6 +58,7 @@
        </div>
       </div>
       
+      
       <script>
       function toggleDiv() {
         const div = document.getElementById('my_div');
@@ -121,9 +122,7 @@ var map = new naver.maps.Map('map', {
     zoom: 10
 });
 
-var markers = [];
-var infoWindows =[];
-//receiveArray();
+
 function receiveArray() {
     $.ajax({
         url: "/api/getDataByDB" ,
@@ -142,8 +141,8 @@ function receiveArrayNoDb(){
     });
   }
 }
-//receiveArrayNoDb();
-receiveArray();
+receiveArrayNoDb();
+//receiveArray();
 var markers = [];
 var infoWindows =[];
 function showData(list){
@@ -198,21 +197,6 @@ function hideMarker(map, marker) {
 if (!marker.setMap()) return;
 marker.setMap(null);
 }
-
-// 해당 마커의 인덱스를 seq라는 클로저 변수로 저장하는 이벤트 핸들러를 반환합니다.
-function getClickHandler(seq) {
-return function(e) {
-    var marker = markers[seq],
-        infoWindow = infoWindows[seq];
-
-    if (infoWindow.getMap()) {
-        infoWindow.close();
-    } else {
-        infoWindow.open(map, marker);
-    }
-}
-}
-
 
 
 function getClickHandler(seq){
