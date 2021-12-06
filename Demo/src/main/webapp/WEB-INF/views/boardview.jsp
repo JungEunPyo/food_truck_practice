@@ -34,7 +34,7 @@
               <a class="nav-link" href="./area">상권분석</a>
               <a class="nav-link" href="./boardlist">게시판</a>
             </div>
-           <%-- 
+           <!-- 
            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <a class="nav-link" href="./logot">로그아웃</a>
           </div>
@@ -45,7 +45,7 @@
               <a class="nav-link" href="./area">상권분석</a>
               <a class="nav-link" href="./boardlist">게시판</a>
             </div>
-            --%> 
+            --> 
           </div>
         </div>
       </nav>
@@ -54,35 +54,38 @@
 			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 				<thead>
 					<tr>
-						<th colspan="3" style="background-color: #eeeeee; text-align: center; font">게시판 글보기</th>						
+						<th colspan="3" style="background-color: #eeeeee; text-align: center; ">게시판 글보기</th>						
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<td style="width: 20%;">글제목</td>
-						<td colspan="2"><%--= .getTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\n", "<br>") --%></td>
+						<td colspan="2">${info.title}</td>
+        
+            
 					</tr>
+          <!--
 					<tr>
 						<td>작성자</td>
-						<td colspan="2"><%--= .getUserID() --%></td>
+						<td colspan="2">info.getUserID() --%></td>
 					</tr>
-				
+				-->
 					<tr>
 						<td>내용</td>
-						<td colspan="2" style="min-height: 200px; text-align: left;"><%--= .getContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\n", "<br>") --%></td>
-					</tr>
+						<td colspan="2"style="min-height: 200px; text-align: center;">${info.content}</td>
+         </tr>
 				</tbody>
 			</table>
 			<a href="./boardlist" class="btn btn-secondary">목록</a>
 			
-			<%--
+			<!--
 				if (userID != null && userID.equals(.getUserID())) {
 			
 					<a href="update.jsp?bbsID==  " class="btn btn-primary">수정</a>
 					<a href="deleteAction.jsp?bbsID== bbsID " class="btn btn-primary">삭제</a>
 			
 				}
-			--%>
+			-->
 			</div>
 			</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

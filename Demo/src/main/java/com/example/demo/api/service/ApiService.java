@@ -8,6 +8,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -17,25 +18,34 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.api.dto.FoodTruckInfo;
 import com.example.demo.db.entity.Area;
+import com.example.demo.db.entity.Information;
 import com.example.demo.db.repository.AreaRepository;
+import com.example.demo.db.repository.InformationRepository;
 
 @Service
 public class ApiService {
 
 	@Autowired
 	private AreaRepository areaRepository;
+	@Autowired InformationRepository infoRepository;
+	
 	@Value("${data.encodingKey}")
 	private String encodingKey;
 	@Value("${data.decodingKey}")
 	private String decodingKey;
 
+	public Information insertInformation(Information info) {
+		return infoRepository.save(info);
+	}
+	public List<Information> infoList(){
+		return infoRepository.findAll();
+	}
+	public Information findInfo(Long id) {
+		return infoRepository.findById(id).get();
+	}
 	public List<Area> searchByData(){
-		List<Area> list = new ArrayList<>();
-		Iterable<Area> iterable =  areaRepository.findAll();
-		for(Area a: iterable){
-			list.add(a);
-		}
-		return list;
+		return areaRepository.findAll();
+
 	}
 	public List<FoodTruckInfo> searchByNumber(int pageNo) throws IOException{
 		StringBuilder urlBuilder = new StringBuilder("http://api.data.go.kr/openapi/tn_pubr_public_food_truck_permit_area_api"); /*URL*/

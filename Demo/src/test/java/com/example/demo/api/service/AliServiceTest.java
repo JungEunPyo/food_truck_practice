@@ -11,14 +11,16 @@ import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.demo.api.dto.FoodTruckInfo;
 import com.example.demo.db.entity.Area;
 import com.example.demo.db.repository.AreaRepository;
 
-//@SpringBootTest
+@SpringBootTest
 public class AliServiceTest {
 	@Value("${data.encodingKey}")
 	private String encodingKey;
@@ -27,7 +29,7 @@ public class AliServiceTest {
 	
 	@Autowired
 	private AreaRepository areaRepository;
-	//@Test
+	@Test
 	public void addData() throws IOException {
 		String[] pageNo = {"0", "1", "2", "3", "4"};
 		for(int pageNum = 0; pageNum < pageNo.length; pageNum++) {

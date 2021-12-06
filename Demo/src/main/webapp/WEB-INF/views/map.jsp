@@ -141,8 +141,8 @@ function receiveArrayNoDb(){
     });
   }
 }
-receiveArrayNoDb();
-//receiveArray();
+//receiveArrayNoDb();
+receiveArray();
 var markers = [];
 var infoWindows =[];
 function showData(list){

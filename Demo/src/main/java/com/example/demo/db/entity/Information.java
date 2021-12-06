@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,9 +23,4 @@ public class Information {
 	private String title;
 	private String content;
 	
-	@ManyToOne
-	private User user;
-	
-	@ManyToOne
-	private Area area;
 }

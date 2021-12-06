@@ -60,15 +60,20 @@
 					<tr>
 						<th style="background-color: #eeeeee; text-align: center;">번호</th>
 						<th style="background-color: #eeeeee; text-align: center;">제목</th>
-						<th style="background-color: #eeeeee; text-align: center;">작성자</th>
+						<th style="background-color: #eeeeee; text-align: center;">내용</th>
+            
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>1</td>
-						<td><a href="./boardview">안녕하세요</a></td>
-						<td>홍길동</td>
-					</tr>
+          <c:forEach var="item" items="${list}" varStatus="status">
+            <tr>
+              <td>${status.count}</td>
+              <td><a href="<c:url value='/boardview/${item.infoId}'/>">${item.title}</a></td>
+              <td>${item.content}</td>
+            </tr>
+          </c:forEach>
+
+					
 				</tbody>
 			</table>
 			<br></br>
