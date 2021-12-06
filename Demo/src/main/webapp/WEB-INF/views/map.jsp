@@ -98,8 +98,8 @@
        </div>
       </div>
       
-      
       <div class="container-fluid" style="margin: 20px 0px 20px 0px;">
+        <button id="cadastral" class="btn btn-info btn-sm"style="margin:10px;">상업지역 보기 버튼</button>
        <div id="map" style="width:100%; height:800px; border-style: groove; border-radius: 30px;"></div>
       </div>
      <div>
@@ -117,11 +117,46 @@
      </div>
 <script>
 
+// var map = new naver.maps.Map('map', {
+//     center: new naver.maps.LatLng(37.3595704, 127.105399),
+//     zoom: 10
+// });
 var map = new naver.maps.Map('map', {
     center: new naver.maps.LatLng(37.3595704, 127.105399),
-    zoom: 10
+    zoom:10,
+    mapTypeControl: true,
+    mapTypeControlOptions: {
+        style: naver.maps.MapTypeControlStyle.DROPDOWN
+    }
 });
 
+var cadastralLayer = new naver.maps.CadastralLayer();
+
+var btn = $('#cadastral');
+
+naver.maps.Event.addListener(map, 'cadastralLayer_changed', function(cadastralLayer) {
+    if (cadastralLayer.getMap()) {
+        btn.addClass('control-on').val('지적도 끄기');
+    } else {
+        btn.removeClass('control-on').val('지적도 켜기');
+    }
+});
+
+btn.on('click', function(e) {
+    e.preventDefault();
+
+    if (cadastralLayer.getMap()) {
+        cadastralLayer.setMap(null);
+        btn.removeClass('control-on').val('지적도 켜기');
+    } else {
+        cadastralLayer.setMap(map);
+        btn.addClass('control-on').val('지적도 끄기');
+    }
+});
+
+naver.maps.Event.once(map, 'init_stylemap', function() {
+    cadastralLayer.setMap(map);
+});
 
 function receiveArray() {
     $.ajax({
