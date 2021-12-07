@@ -76,7 +76,7 @@
          </tr>
 				</tbody>
 			</table>
-			<a href="./boardlist" class="btn btn-secondary">목록</a>
+			<a href="<c:url value='/boardlist'/>" class="btn btn-secondary">목록</a>
 			
 			<!--
 				if (userID != null && userID.equals(.getUserID())) {
